@@ -317,6 +317,10 @@ class AmazonAPI:
                     #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
                     #print("Error code", response.errors[0].code)
                     #print("Error message", response.errors[0].message)
+                    if response.errors[0].code == "NoResults":
+                        resp = []
+                        if self.CacheWriter:
+                            self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))  
                     raise AmazonException(response.errors[0].code, response.errors[0].message)
 
         except ApiException as exception:
