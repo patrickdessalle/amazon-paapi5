@@ -41,7 +41,7 @@ Search items::
     from amazon.paapi import AmazonAPI
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
     products = amazon.search_items(keywords='harry potter')
-    print(product['data'][0].image_large)
+    print(product['data'][0].images.primary.large.url)
     print(product['data'][1].prices.price)
 
 Get multiple products information::
